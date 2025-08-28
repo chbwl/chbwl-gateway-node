@@ -56,8 +56,8 @@ app.use('*', (req: Request, res: Response) => {
   });
 });
 
-// 启动服务器（仅在非 Vercel 环境中）
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+// 启动服务器（仅在本地开发环境中）
+if (process.env.NODE_ENV !== 'production') {
   const startServer = () => {
     try {
       app.listen(PORT, () => {
