@@ -73,4 +73,10 @@ const startServer = () => {
   }
 };
 
-startServer();
+// 在 Vercel 环境中不启动服务器，只导出应用
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  startServer();
+}
+
+// 导出 Express 应用实例（Vercel 需要）
+export default app;
