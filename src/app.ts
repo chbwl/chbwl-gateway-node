@@ -33,8 +33,11 @@ app.get('/', (_req: Request, res: Response) => {
 import usersRouter from './routes/users';
 import dataRouter from './routes/data';
 
+// 同时支持 /api 前缀和根路径
 app.use('/api/users', usersRouter);
 app.use('/api/data', dataRouter);
+app.use('/users', usersRouter);
+app.use('/data', dataRouter);
 
 // 错误处理中间件
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
