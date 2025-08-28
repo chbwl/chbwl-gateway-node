@@ -56,26 +56,21 @@ app.use('*', (req: Request, res: Response) => {
   });
 });
 
-// 启动服务器（仅在本地开发环境中）
-if (process.env.NODE_ENV !== 'production') {
-  const startServer = () => {
-    try {
-      app.listen(PORT, () => {
-        logger.info(`🚀 服务器启动成功！`);
-        logger.info(`📍 运行端口: ${PORT}`);
-        logger.info(`🌍 环境: ${process.env['NODE_ENV'] || 'development'}`);
-        logger.info(`📡 API地址: http://localhost:${PORT}`);
-        logger.info(`👥 用户接口: http://localhost:${PORT}/api/users`);
-        logger.info(`📊 数据接口: http://localhost:${PORT}/api/data`);
-      });
-    } catch (error) {
-      logger.error('❌ 服务器启动失败:', error);
-      process.exit(1);
-    }
-  };
+// 启动服务器
+const startServer = () => {
+  try {
+    app.listen(PORT, () => {
+      logger.info(`🚀 服务器启动成功！`);
+      logger.info(`📍 运行端口: ${PORT}`);
+      logger.info(`🌍 环境: ${process.env['NODE_ENV'] || 'development'}`);
+      logger.info(`📡 API地址: http://localhost:${PORT}`);
+      logger.info(`👥 用户接口: http://localhost:${PORT}/api/users`);
+      logger.info(`📊 数据接口: http://localhost:${PORT}/api/data`);
+    });
+  } catch (error) {
+    logger.error('❌ 服务器启动失败:', error);
+    process.exit(1);
+  }
+};
 
-  startServer();
-}
-
-// 导出 Express 应用实例（Vercel 需要）
-export default app;
+startServer();
