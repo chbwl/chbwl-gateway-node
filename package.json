@@ -7,8 +7,7 @@
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc",
-    "clean": "rm -rf dist node_modules",
-    "vercel-build": "tsc && cp package.json dist/"
+    "clean": "rm -rf dist node_modules"
   },
   "keywords": ["nodejs", "api", "gateway", "typescript", "express"],
   "author": "Your Name",
@@ -27,8 +26,6 @@
     "ts-node": "^10.9.2"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=6.35.1"
-  },
-  "packageManager": "pnpm@6.35.1"
+    "node": ">=18.0.0"
+  }
 }
