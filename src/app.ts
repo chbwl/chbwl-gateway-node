@@ -2,7 +2,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { logger } from './utils/logger';
-import { findAvailablePort } from './utils/port';
 
 // 加载环境变量
 dotenv.config();
@@ -58,16 +57,15 @@ app.use('*', (req: Request, res: Response) => {
 });
 
 // 启动服务器
-const startServer = async () => {
+const startServer = () => {
   try {
-    const availablePort = await findAvailablePort(PORT);
-    app.listen(availablePort, () => {
+    app.listen(PORT, () => {
       logger.info(`🚀 服务器启动成功！`);
-      logger.info(`📍 运行端口: ${availablePort}`);
+      logger.info(`📍 运行端口: ${PORT}`);
       logger.info(`🌍 环境: ${process.env['NODE_ENV'] || 'development'}`);
-      logger.info(`📡 API地址: http://localhost:${availablePort}`);
-      logger.info(`👥 用户接口: http://localhost:${availablePort}/api/users`);
-      logger.info(`📊 数据接口: http://localhost:${availablePort}/api/data`);
+      logger.info(`📡 API地址: http://localhost:${PORT}`);
+      logger.info(`👥 用户接口: http://localhost:${PORT}/api/users`);
+      logger.info(`📊 数据接口: http://localhost:${PORT}/api/data`);
     });
   } catch (error) {
     logger.error('❌ 服务器启动失败:', error);
